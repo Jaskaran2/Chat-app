@@ -89,3 +89,17 @@
   padding: 10px;
   color: gray;
 }
+
+
+.emoji-mart {
+  position: absolute !important;
+  top: -700%;
+  z-index: 999;
+  left: 0;
+  width: 30vw !important;
+}
+.emoji-mart {
+  width: 100vw !important;
+  z-index: 999;
+  top: -970%;
+}

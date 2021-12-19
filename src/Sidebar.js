@@ -23,7 +23,7 @@ function Sidebar(){
   },[]);
 
   return (
-    <div className="sidebar">z
+    <div className="sidebar">
   <div className="sidebar__header">
     <Avatar src={user?.photoURL} />
       <div className="sidebar__headerRight">

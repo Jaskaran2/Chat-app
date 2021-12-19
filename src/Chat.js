@@ -11,6 +11,9 @@ import db from "./firebase";
 import {useStateValue} from "./StateProvider";
 import firebase from "firebase";
 
+import "emoji-mart/css/emoji-mart.css";
+import { Picker } from "emoji-mart";
+
 function Chat(){
 
   const[seed,setSeed]=useState('');
@@ -20,6 +23,16 @@ function Chat(){
   const[messages,setMessages]=useState([]);
   const[{user},dispatch]=useStateValue();
 
+  const [emoji, setEmoji] = useState(false);
+  const addEmoji = (e) => {
+      let emoji = e.native;
+      setInput(input + emoji);
+    };
+    const checkEmojiClose = () => {
+      if (emoji) {
+        setEmoji(false);
+      }
+    };
 
 //Different routs
   useEffect(()=>{
@@ -100,12 +113,22 @@ function Chat(){
                   </div>
 
               <div className="chat__footer">
-                <InsertEmoticonIcon />
+              <IconButton>
+
+                <InsertEmoticonIcon 
+                 className="yellow"
+                 onClick={() => setEmoji(!emoji)}
+                 />
+                    {emoji ? <Picker onSelect={addEmoji} /> : null}
+                    </IconButton>
+
               <form>
                 <input
                   value={input}
                   onChange={(e) => setInput(e.target.value)}
                   placeholder="Type a message"
+                  onClick={checkEmojiClose}
+
                   type="text"
                 />
               <button onClick={sendMesssage}
@@ -115,6 +138,7 @@ function Chat(){
               </form>
               <MicIcon />
               </div>
+              
     </div>);
 }
 
